@@ -15,6 +15,11 @@ struct not_enough_arguments_error : public std::runtime_error
   not_enough_arguments_error();
 };
 
+struct excess_argument_error : public std::runtime_error
+{
+  excess_argument_error(const std::string &value);
+};
+
 struct missing_argument_value_error : public std::runtime_error
 {
   missing_argument_value_error(const std::string &argument);
