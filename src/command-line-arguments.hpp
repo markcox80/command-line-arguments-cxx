@@ -5,20 +5,67 @@
 #include <stdexcept>
 #include <sstream>
 
-std::string get_argument(int *i, int argc, char **argv);
-
-template <typename T>
-T
-get_argument(int *i, int argc, char **argv)
+struct not_enough_arguments_error : public std::runtime_error
 {
-  std::stringstream s(get_argument(i, argc, argv));
-  T rv;
-  s >> rv;
-  return rv;
-}
+  not_enough_arguments_error(const std::string &argument);
+};
 
-template <typename T>
-class CommandLineArgument;
+std::string get_argument(int *i, int argc, char **argv);
+
+/* String to value conversion functions.
+ *
+ */
+template <typename T> T coerce_command_line_argument(const std::string &value);
+
+template <> double coerce_command_line_argument(const std::string &value);
+
+/* Command Line Argument for general values.
+ * 
+ */
+template <class T>
+class CommandLineArgument
+{
+public:
+  CommandLineArgument() : is_assigned(false) {}
+
+  CommandLineArgument &operator=(const T &argument) {
+    is_assigned = true;
+    value = argument;
+    return *this;
+  }
+
+  CommandLineArgument &operator=(const std::string &value) {
+    *this = coerce_command_line_argument<T>(value);
+    return *this;
+  }
+  
+  T &operator*() { 
+    if (!isAssigned())
+      throw std::runtime_error("Cannot obtain reference to value of expected command line argument as no value has been assigned.");
+
+    return value;
+  }
+
+  T *operator->() {
+    if (!isAssigned())
+      throw std::runtime_error("Cannot obtain pointer to value of expected command line argument as no value has been assigned.");
+
+    return &value;
+  }
+
+  bool isAssigned() const {
+    return is_assigned;
+  }
+
+private:
+  bool is_assigned;
+  T value;
+};
+
+
+/* Command Line Argument for strings.
+ *
+ */
 
 template <>
 class CommandLineArgument<std::string>
@@ -35,7 +82,7 @@ public:
   std::string &operator*() { 
     if (!isAssigned())
       throw std::runtime_error("Cannot obtain reference to value of expected command line argument as no value has been assigned.");
-
+    
     return value;
   }
 
@@ -69,50 +116,7 @@ private:
   std::string value;
 };
 
-template <typename T>
-class CommandLineArgument
-{
-public:
-  CommandLineArgument() : is_assigned(false) {}
-
-  CommandLineArgument &operator=(const std::string &argument) {
-    is_assigned = true;
-
-    std::stringstream s(argument);
-    s >> value;
-
-    return *this;
-  }
-
-  CommandLineArgument &operator=(const T &argument) {
-    is_assigned = true;
-    value = argument;
-    return *this;
-  }
-
-  T &operator*() { 
-    if (!isAssigned())
-      throw std::runtime_error("Cannot obtain reference to value of expected command line argument as no value has been assigned.");
-
-    return value;
-  }
-
-  T *operator->() {
-    if (!isAssigned())
-      throw std::runtime_error("Cannot obtain pointer to value of expected command line argument as no value has been assigned.");
-
-    return &value;
-  }
-
-  bool isAssigned() const {
-    return is_assigned;
-  }
-
-private:
-  bool is_assigned;
-  T value;
-};
-
+
 /**
  ** HAVE_ARGUMENT_P boiler plate.
  **/
@@ -234,6 +238,7 @@ bool have_arguments_p(const CommandLineArgument<T1> &argument1,
     && have_argument_p(argument8);
 }
 
+
 /**
  ** ASSIGN_ARGUMENT boiler plate.
  **/
