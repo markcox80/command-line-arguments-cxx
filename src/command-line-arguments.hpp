@@ -5,12 +5,20 @@
 #include <stdexcept>
 #include <sstream>
 
+
+/* Exceptions
+ *
+ */
+
 struct not_enough_arguments_error : public std::runtime_error
 {
-  not_enough_arguments_error(const std::string &argument);
+  not_enough_arguments_error();
 };
 
-std::string get_argument(int *i, int argc, char **argv);
+struct missing_argument_value_error : public std::runtime_error
+{
+  missing_argument_value_error(const std::string &argument);
+};
 
 /* String to value conversion functions.
  *
@@ -18,6 +26,20 @@ std::string get_argument(int *i, int argc, char **argv);
 template <typename T> T coerce_command_line_argument(const std::string &value);
 
 template <> double coerce_command_line_argument(const std::string &value);
+
+
+/* Get arguments
+ *
+ */
+
+std::string get_command_line_argument(int *i, int argc, char **argv);
+
+template <typename T>
+T
+get_command_line_argument(int *i, int argc, char **argv)
+{
+  return coerce_command_line_argument<T>(get_command_line_argument(i, argc, argv));
+}
 
 /* Command Line Argument for general values.
  * 

@@ -5,17 +5,19 @@ using namespace std;
 
 /* Not enough arguments error */
 
-not_enough_arguments_error::not_enough_arguments_error(const string &argument)
-  : runtime_error(string("The command line option ") + argument + " requires an argument.")
+not_enough_arguments_error::not_enough_arguments_error()
+  : runtime_error("The program is missing command line arguments.")
 {
 
 }
 
-static
-not_enough_arguments_error
-not_enough_arguments(const char *arg)
+
+/* Missing argument value error */
+
+missing_argument_value_error::missing_argument_value_error(const std::string &argument)
+  : runtime_error(string("The command line argument ") + argument + " requires an argument.")
 {
-  return not_enough_arguments_error(arg);
+
 }
 
 /* get_argument
