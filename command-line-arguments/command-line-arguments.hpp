@@ -284,8 +284,8 @@ bool have_arguments_p(const CommandLineArgument<T1> &argument1,
  ** ASSIGN_ARGUMENT boiler plate.
  **/
 
-template <typename T>
-bool assign_argument(const std::string &value, CommandLineArgument<T> &argument)
+template <typename V, typename T>
+bool assign_argument(const V &value, CommandLineArgument<T> &argument)
 {
   if (have_argument_p(argument))
     return false;
@@ -295,16 +295,16 @@ bool assign_argument(const std::string &value, CommandLineArgument<T> &argument)
   }
 }
 
-template <typename T1, typename T2>
-bool assign_argument(const std::string &value, CommandLineArgument<T1> &argument1, CommandLineArgument<T2> &argument2)
+template <typename V, typename T1, typename T2>
+bool assign_argument(const V &value, CommandLineArgument<T1> &argument1, CommandLineArgument<T2> &argument2)
 {
   return false
     || assign_argument(value, argument1)
     || assign_argument(value, argument2);
 }
 
-template <typename T1, typename T2, typename T3>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3)
@@ -315,8 +315,8 @@ bool assign_argument(const std::string &value,
     || assign_argument(value, argument3);
 }
 
-template <typename T1, typename T2, typename T3, typename T4>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3, typename T4>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3,
@@ -329,8 +329,8 @@ bool assign_argument(const std::string &value,
     || assign_argument(value, argument4);
 }
 
-template <typename T1, typename T2, typename T3, typename T4, typename T5>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3,
@@ -345,8 +345,8 @@ bool assign_argument(const std::string &value,
     || assign_argument(value, argument5);
 }
 
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3,
@@ -363,8 +363,8 @@ bool assign_argument(const std::string &value,
     || assign_argument(value, argument6);
 }
 
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3,
@@ -383,8 +383,8 @@ bool assign_argument(const std::string &value,
     || assign_argument(value, argument7);
 }
 
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
-bool assign_argument(const std::string &value,
+template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
+bool assign_argument(const V &value,
                      CommandLineArgument<T1> &argument1,
                      CommandLineArgument<T2> &argument2,
                      CommandLineArgument<T3> &argument3,

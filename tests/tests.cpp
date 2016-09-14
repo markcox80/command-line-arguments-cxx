@@ -130,24 +130,39 @@ TEST_CASE("have_arguments_p") {
   REQUIRE(have_arguments_p(a1, a2, a3, a4, a5));
 }
 
-TEST_CASE("assign arguments") {
-  CommandLineArgument<uint8_t> a1, a2, a3;
+TEST_CASE("assign_arguments") {
+  SECTION("Strings") {
+    CommandLineArgument<uint8_t> a1, a2, a3;
 
-  REQUIRE(!have_arguments_p(a1, a2, a3));
+    REQUIRE(!have_arguments_p(a1, a2, a3));
 
-  REQUIRE(assign_argument("1", a1, a2, a3));
-  REQUIRE(*a1 == 1);
-  REQUIRE(!have_arguments_p(a2, a3));
+    REQUIRE(assign_argument("1", a1, a2, a3));
+    REQUIRE(*a1 == 1);
+    REQUIRE(!have_arguments_p(a2, a3));
 
-  REQUIRE(assign_argument("2", a1, a2, a3));
-  REQUIRE(*a1 == 1);
-  REQUIRE(*a2 == 2);
-  REQUIRE(!have_arguments_p(a3));
+    REQUIRE(assign_argument("2", a1, a2, a3));
+    REQUIRE(*a1 == 1);
+    REQUIRE(*a2 == 2);
+    REQUIRE(!have_arguments_p(a3));
 
-  REQUIRE(assign_argument("3", a1, a2, a3));
-  REQUIRE(*a1 == 1);
-  REQUIRE(*a2 == 2);
-  REQUIRE(*a3 == 3);
+    REQUIRE(assign_argument("3", a1, a2, a3));
+    REQUIRE(*a1 == 1);
+    REQUIRE(*a2 == 2);
+    REQUIRE(*a3 == 3);
 
-  REQUIRE(!assign_argument("4", a1, a2, a3));
+    REQUIRE(!assign_argument("4", a1, a2, a3));
+  }
+
+  SECTION("Values") {
+    CommandLineArgument<uint8_t> a1, a2, a3;
+
+    REQUIRE(assign_argument(1, a1, a2, a3));
+    REQUIRE(*a1 == 1);
+    REQUIRE(!have_arguments_p(a2, a3));
+
+    REQUIRE(assign_argument("2", a1, a2, a3));
+    REQUIRE(*a1 == 1);
+    REQUIRE(*a2 == 2);
+    REQUIRE(!have_arguments_p(a3));
+  }
 }
