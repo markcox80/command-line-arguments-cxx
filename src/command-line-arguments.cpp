@@ -35,7 +35,7 @@ void
 get_command_line_argument(string *rv, int *i, int argc, const char **argv)
 {
   if ((*i + 1) >= argc)
-    throw runtime_error(string("Not enough arguments to process argument: ") + argv[*i]);
+    throw missing_argument_value_error(argv[*i]);
 
   *i = (*i + 1);
   *rv = argv[*i];
