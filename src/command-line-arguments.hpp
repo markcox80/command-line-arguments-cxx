@@ -49,9 +49,14 @@ void
 get_command_line_argument(T *arg, int *i, int argc, const char **argv)
 {
   std::string string_value;
-  get_command_line_argument(&string_value, i, argc, argv);
-
-  coerce_command_line_argument(arg, string_value);
+  int previous_value = *i;
+  try {
+    get_command_line_argument(&string_value, i, argc, argv);
+    coerce_command_line_argument(arg, string_value);
+  } catch (...) {
+    *i = previous_value;
+    throw;
+  }
 }
 
 /* Command Line Argument for general values.
