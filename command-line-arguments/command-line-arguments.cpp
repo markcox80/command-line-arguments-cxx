@@ -6,7 +6,7 @@ using namespace std;
 /* Not enough arguments error */
 
 not_enough_arguments_error::not_enough_arguments_error()
-  : runtime_error("The program is missing command line arguments.")
+  : runtime_error("Not enough command line arguments provided.")
 {
 }
 
