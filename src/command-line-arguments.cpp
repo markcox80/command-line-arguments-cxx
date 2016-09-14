@@ -26,32 +26,17 @@ excess_argument_error::excess_argument_error(const std::string &argument)
 {
 }
 
-/* get_argument
- *
- */
-
-string
-get_argument(int *i, int argc, char **argv)
-{
-  if ((*i + 1) >= argc) 
-    throw runtime_error(string("Not enough arguments to process argument: ") + argv[*i]);
-
-  *i = (*i + 1);
-  return argv[*i];
-}
-
-
 /* Coercions
  *
  */
 
 template <>
-double
-coerce_command_line_argument(const std::string &value)
+void
+get_command_line_argument(string *rv, int *i, int argc, const char **argv)
 {
-  size_t index;  
-  double result = stod(value, &index);
-  if (index != value.size())
-    throw runtime_error(string("Unable to convert ") + value + " to a double.");
-  return result;
+  if ((*i + 1) >= argc)
+    throw runtime_error(string("Not enough arguments to process argument: ") + argv[*i]);
+
+  *i = (*i + 1);
+  *rv = argv[*i];
 }
