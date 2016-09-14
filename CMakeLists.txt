@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4.2)
 cmake_policy(SET CMP0054 NEW)
 
-add_subdirectory(src)
+add_subdirectory(command-line-arguments)
 add_subdirectory(tests)
 
 # Export the library
