@@ -76,6 +76,7 @@ public:
 
   CommandLineArgument &operator=(const std::string &string) {
     coerce_command_line_argument(&value, string);
+    is_assigned = true;
     return *this;
   }
 
