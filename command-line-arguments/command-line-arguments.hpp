@@ -498,7 +498,8 @@ coerce_command_line_argument(T *arg, const std::string &string_value)
   typename functor_type::result_type value = functor(data, &end);
 
   std::numeric_limits<T> limits;
-  if ((end == data_end) && (limits.min() <= value) && (value <= limits.max()))
+
+  if ((end == data_end) && (limits.lowest() <= value) && (value <= limits.max()))
     *arg = static_cast<T>(value);
   else
     throw std::runtime_error(std::string("Unable to convert value ") + string_value + " to the specified number type.");
