@@ -24,6 +24,9 @@ TEST_CASE("Number Conversions") {
 
     coerce_command_line_argument(&d, "128.123");
     REQUIRE(d == 128.123);
+
+    coerce_command_line_argument(&d, "0.0");
+    REQUIRE(d == 0);
   }
 
   SECTION("Limit Tests") {
