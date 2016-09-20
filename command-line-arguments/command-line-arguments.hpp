@@ -466,10 +466,11 @@ struct CoerceToNumberFunctorSelector<T, false, false, true>
   typedef CoerceToNumberFunctor<double> functor_type;
 };
 
-template <typename T, bool U, bool V>
-struct CoerceToNumberFunctorSelector<T, true, U, V>
+template <typename T, bool V>
+struct CoerceToNumberFunctorSelector<T, true, false, V>
 {
   typedef typename std::underlying_type<T>::type underlying_type;
+
   static const bool is_enum = std::is_enum<T>::value;
   static const bool is_integer = std::is_integral<T>::value;
   static const bool is_signed = std::is_signed<T>::value;
