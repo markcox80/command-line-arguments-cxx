@@ -40,3 +40,23 @@ get_command_line_argument(string *rv, int *i, int argc, const char **argv)
   *i = (*i + 1);
   *rv = argv[*i];
 }
+
+
+/* Command line option test. */
+
+bool
+command_line_option_p(const std::string &value)
+{
+  switch (value.size()) {
+  case 0:
+  case 1:
+    return false;
+  case 2:
+    if (value == "--")
+      return false;
+    else
+      return (value[0] == '-');
+  default:
+    return (value[0] == '-') && (value[1] == '-');
+  }
+}

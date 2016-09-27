@@ -204,6 +204,11 @@ bool assign_argument(const V &value, CommandLineArgument<T1> &argument1, Command
     || assign_argument(value, argument1)
     || assign_argument(value, others...);
 }
+
+
+/* Command line option test. */
+
+bool command_line_option_p(const std::string &value);
 
 /* Number conversions. */
 

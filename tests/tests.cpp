@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 #include <command-line-arguments/command-line-arguments.hpp>
+#include <functional>
 
 using namespace std;
 
@@ -171,4 +172,16 @@ TEST_CASE("assign_arguments") {
     REQUIRE(*a2 == 2);
     REQUIRE(!have_arguments_p(a3));
   }
+}
+
+TEST_CASE("command_line_option_p") {
+  auto t = ptr_fun(&command_line_option_p);
+  REQUIRE(t("") == false);
+  REQUIRE(t("-") == false);
+  REQUIRE(t("--") == false);
+  REQUIRE(t("a") == false);
+  REQUIRE(t("-a") == true);
+  REQUIRE(t("--a") == true);
+  REQUIRE(t("--help") == true);
+  REQUIRE(t("help") == false);
 }
