@@ -159,7 +159,7 @@ private:
 
 
 /**
- ** HAVE_ARGUMENT_P boiler plate.
+ ** HAVE_ARGUMENT_P and HAVE_ARGUMENTS_P.
  **/
 
 template <typename T>
@@ -174,111 +174,13 @@ bool have_arguments_p(const CommandLineArgument<T> &argument)
   return have_argument_p(argument);
 }
 
-template <typename T1, typename T2>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2)
+template <typename T, typename... Rest>
+bool have_arguments_p(const CommandLineArgument<T> &argument, Rest... others)
 {
   return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2);
+    && have_argument_p(argument)
+    && have_arguments_p(others...);
 }
-
-template <typename T1, typename T2, typename T3>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3);
-}
-
-template <typename T1, typename T2, typename T3, typename T4>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3,
-                      const CommandLineArgument<T4> &argument4)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3)
-    && have_argument_p(argument4);
-}
-
-template <typename T1, typename T2, typename T3, typename T4, typename T5>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3,
-                      const CommandLineArgument<T4> &argument4,
-                      const CommandLineArgument<T5> &argument5)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3)
-    && have_argument_p(argument4)
-    && have_argument_p(argument5);
-}
-
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3,
-                      const CommandLineArgument<T4> &argument4,
-                      const CommandLineArgument<T5> &argument5,
-                      const CommandLineArgument<T6> &argument6)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3)
-    && have_argument_p(argument4)
-    && have_argument_p(argument5)
-    && have_argument_p(argument6);
-}
-
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3,
-                      const CommandLineArgument<T4> &argument4,
-                      const CommandLineArgument<T5> &argument5,
-                      const CommandLineArgument<T6> &argument6,
-                      const CommandLineArgument<T7> &argument7)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3)
-    && have_argument_p(argument4)
-    && have_argument_p(argument5)
-    && have_argument_p(argument6)
-    && have_argument_p(argument7);
-}
-
-template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
-bool have_arguments_p(const CommandLineArgument<T1> &argument1,
-                      const CommandLineArgument<T2> &argument2,
-                      const CommandLineArgument<T3> &argument3,
-                      const CommandLineArgument<T4> &argument4,
-                      const CommandLineArgument<T5> &argument5,
-                      const CommandLineArgument<T6> &argument6,
-                      const CommandLineArgument<T7> &argument7,
-                      const CommandLineArgument<T8> &argument8)
-{
-  return true
-    && have_argument_p(argument1)
-    && have_argument_p(argument2)
-    && have_argument_p(argument3)
-    && have_argument_p(argument4)
-    && have_argument_p(argument5)
-    && have_argument_p(argument6)
-    && have_argument_p(argument7)
-    && have_argument_p(argument8);
-}
-
 
 /**
  ** ASSIGN_ARGUMENT boiler plate.
