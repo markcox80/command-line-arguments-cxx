@@ -28,6 +28,11 @@ struct missing_argument_value_error : public std::runtime_error
 {
   missing_argument_value_error(const std::string &argument);
 };
+
+struct unsupported_option_error : public std::runtime_error
+{
+  unsupported_option_error(const std::string &option);
+};
 
 /* String to value conversion functions.
  *

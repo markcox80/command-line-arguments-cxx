@@ -25,6 +25,14 @@ excess_argument_error::excess_argument_error(const std::string &argument)
   : runtime_error(string("Do not know how to process argument ") + argument)
 {
 }
+
+
+/* Unsupported option error */
+
+unsupported_option_error::unsupported_option_error(const std::string &option)
+  : runtime_error(string("The option ") + option + " is not recognised by this program.")
+{
+}
 
 /* Coercions
  *
