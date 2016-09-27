@@ -183,7 +183,7 @@ bool have_arguments_p(const CommandLineArgument<T> &argument, Rest... others)
 }
 
 /**
- ** ASSIGN_ARGUMENT boiler plate.
+ ** ASSIGN_ARGUMENT
  **/
 
 template <typename V, typename T>
@@ -197,116 +197,13 @@ bool assign_argument(const V &value, CommandLineArgument<T> &argument)
   }
 }
 
-template <typename V, typename T1, typename T2>
-bool assign_argument(const V &value, CommandLineArgument<T1> &argument1, CommandLineArgument<T2> &argument2)
+template <typename V, typename T1, typename... Rest>
+bool assign_argument(const V &value, CommandLineArgument<T1> &argument1, CommandLineArgument<Rest> & ... others)
 {
   return false
     || assign_argument(value, argument1)
-    || assign_argument(value, argument2);
+    || assign_argument(value, others...);
 }
-
-template <typename V, typename T1, typename T2, typename T3>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3);
-}
-
-template <typename V, typename T1, typename T2, typename T3, typename T4>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3,
-                     CommandLineArgument<T4> &argument4)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3)
-    || assign_argument(value, argument4);
-}
-
-template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3,
-                     CommandLineArgument<T4> &argument4,
-                     CommandLineArgument<T5> &argument5)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3)
-    || assign_argument(value, argument4)
-    || assign_argument(value, argument5);
-}
-
-template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3,
-                     CommandLineArgument<T4> &argument4,
-                     CommandLineArgument<T5> &argument5,
-                     CommandLineArgument<T6> &argument6)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3)
-    || assign_argument(value, argument4)
-    || assign_argument(value, argument5)
-    || assign_argument(value, argument6);
-}
-
-template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3,
-                     CommandLineArgument<T4> &argument4,
-                     CommandLineArgument<T5> &argument5,
-                     CommandLineArgument<T6> &argument6,
-                     CommandLineArgument<T7> &argument7)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3)
-    || assign_argument(value, argument4)
-    || assign_argument(value, argument5)
-    || assign_argument(value, argument6)
-    || assign_argument(value, argument7);
-}
-
-template <typename V, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
-bool assign_argument(const V &value,
-                     CommandLineArgument<T1> &argument1,
-                     CommandLineArgument<T2> &argument2,
-                     CommandLineArgument<T3> &argument3,
-                     CommandLineArgument<T4> &argument4,
-                     CommandLineArgument<T5> &argument5,
-                     CommandLineArgument<T6> &argument6,
-                     CommandLineArgument<T7> &argument7,
-                     CommandLineArgument<T8> &argument8)
-{
-  return false
-    || assign_argument(value, argument1)
-    || assign_argument(value, argument2)
-    || assign_argument(value, argument3)
-    || assign_argument(value, argument4)
-    || assign_argument(value, argument5)
-    || assign_argument(value, argument6)
-    || assign_argument(value, argument7)
-    || assign_argument(value, argument8);
-}
-
 
 /* Number conversions. */
 
