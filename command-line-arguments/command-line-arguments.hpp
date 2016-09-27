@@ -175,7 +175,7 @@ bool have_arguments_p(const CommandLineArgument<T> &argument)
 }
 
 template <typename T, typename... Rest>
-bool have_arguments_p(const CommandLineArgument<T> &argument, Rest... others)
+bool have_arguments_p(const CommandLineArgument<T> &argument, const CommandLineArgument<Rest> & ... others)
 {
   return true
     && have_argument_p(argument)
