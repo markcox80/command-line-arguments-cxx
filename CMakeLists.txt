@@ -5,6 +5,8 @@ cmake_policy(SET CMP0054 NEW)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(catch REQUIRED)
+
 add_subdirectory(command-line-arguments)
 add_subdirectory(tests)
 
