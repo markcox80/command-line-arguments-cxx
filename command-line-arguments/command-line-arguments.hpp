@@ -8,7 +8,7 @@ extern "C" {
 #include <string>
 #include <stdexcept>
 #include <sstream>
-
+#include <limits>
 
 /* Exceptions
  *
