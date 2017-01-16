@@ -4,7 +4,7 @@
 A simple mechanism for processing command line arguments in C++.
 
 * Usage
-Lets say you have written a program which has the following usage:
+Lets say you have a program which has the following usage:
 
 #+begin_src text
 Usage: [options] <in> <out>
@@ -13,6 +13,8 @@ Options:
   --help             This helpful message.
   --alpha <alpha>    Change the alpha value.
 #+end_src
+
+The command line arguments can be processed using the following:
 
 #+begin_src c++
   #include <command-line-arguments/command-line-arguments.hpp>
