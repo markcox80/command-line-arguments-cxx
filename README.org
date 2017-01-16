@@ -1,7 +1,7 @@
 #+TITLE: Parsing Command Line Arguments
 #+AUTHOR: Mark Cox
 
-A simple mechanism for processing command line arguments.
+A simple mechanism for processing command line arguments in C++.
 
 * Usage
 Lets say you have written a program which has the following usage:
